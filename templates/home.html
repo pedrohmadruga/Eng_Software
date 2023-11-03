@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Sympla fake</title>
-</head>
-<body>
-    <div style="display: flex;">
+{%extends 'modelo.html' %}
+{% load static %}
+
+{%block conteudo%}
+    <div class=" p-5 mt-2"style="display: flex;">
         <div style="display: flex; justify-content: center; align-items: center; gap: 15px; width: 100%;">
-          <button class="btn btn-primary" id="btn-register">Cadastre-se</button>
-          <button class="btn btn-primary" id="btn-login">Entrar</button>
+            <button class="btn btn-primary" id="btn-register">Cadastre-se</button>
+            <button class="btn btn-primary" id="btn-login">Entrar</button>
         </div>
-      </div>
-</body>
+    </div>
+{%endblock%}
+
 <script>
     document.getElementById('btn-register').addEventListener('click', () => {
         window.location.href = "{% url 'register' %}";
@@ -23,5 +19,3 @@
         window.location.href = "{% url 'login' %}";
     });
 </script>
-
-</html>

@@ -1,11 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Pagina do login
-</body>
-</html>
+{% extends 'modelo.html' %}
+{%load crispy_forms_tags%}
+{% load static %}
+
+
+{% block conteudo %}
+
+{% if request.user.is_authenticated %}
+<div class="p-5 mt-2">
+    <div class="row justify-content-center">
+        <div class="card mx-auto mb-2 p-2 col-md-10 p-md-0">
+            <h6 class=" mx-auto card-title mt-1">
+                Ação Não Autorizada!
+            </h6>
+            <hr>
+            <p class=" card-body mx-md-auto">
+                Usuario não autorizado a realizar está Ação
+            </p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="card p-2 mt-2 mb-2 col-md-10 mx-auto">
+                <span class="mx-auto ">
+                    para voltar para a pagina inical <a href="{% url 'home' %}" class="btn btn-sm btn-primary ms-2"> Clique aqui</a>
+                </span> 
+            </div>
+        </div>
+    </div>    
+</div>
+
+{% else %}
+<div class="p-5 mt-2">
+    <div class="row">
+        <div class="card p-3 col col-md-7   mx-auto">
+            <h2 class="card-title mx-md-auto my-auto">
+                Login
+            </h2>
+            <hr>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="">
+                    <button type="submit" class="btn btn-primary ">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{%endif%}
+{% endblock %}

@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Biblioteca para formatar os formularios do django 
+    "crispy_forms",
+    "crispy_bootstrap5",
 
     # minhas aplicações
     'main_site',
@@ -131,5 +134,20 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
+#configurações do crispy para funcionar com bootstrap5
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+#configurações de autenticação:
+#indica a pagina para onde o usuario vai dps de logar
+LOGIN_REDIRECT_URL = 'home'
+#indica a pagina para onde ele vai quando ele tenta acessar algo que precise de login 
+LOGIN_URL = 'login'
+#para onde o usuario vai dps de fazer logout
+LOGOUT_REDIRECT_URL ='login'
