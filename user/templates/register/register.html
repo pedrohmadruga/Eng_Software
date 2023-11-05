@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Sympla fake</title>
+</head>
+
+<body>
+  <h1 style="text-align: center;">Cadastrar</h1>
+  <div style="display: flex;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; width: 100%;">
+      <button class="btn btn-primary" name="comprador" id="btn-comprador">Cadastrar como comprador</button>
+      <button class="btn btn-primary" name="organizador" id="btn-organizador">Cadastrar como organizador</button>
+    </div>
+  </div>
+  <form action="{% url 'register' %}" method="post" id="form-register">
+    {% csrf_token %}
+  </form>
+</body>
+<script>
+  const comprador = document.querySelector('#btn-comprador');
+  const organizador = document.querySelector('#btn-organizador');
+  const form = document.querySelector('#form-register');
+  const div = document.createElement('div');
+  div.setAttribute('id', 'div-inputs');
+  comprador.addEventListener('click', () => {
+    if(form.contains(div)) {
+      form.removeChild(div);
+    }
+    type = 1;
+    div.innerHTML = `
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input name="name" type="text" class="form-control" id="name-cpf" placeholder="Nome">
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input name="cpf" type="text" class="form-control" id="cpf" placeholder="CPF apenas numeros">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="email" class="form-control" id="email-cpf" aria-describedby="emailHelp"
+          placeholder="Email">
+        <small id="emailHelp" class="form-text text-muted">Não compartilharemos seu email com ninguém</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input name="password" type="password" class="form-control" id="password-cpf" placeholder="Senha">
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    `;
+    form.appendChild(div);
+  });
+
+  organizador.addEventListener('click', () => {
+    if(form.contains(div)) {
+      form.removeChild(div);
+    }
+    div.innerHTML = `
+      <div class="form-group">
+        <label for="name">Nome da empresa/negócio</label>
+        <input name="name" type="text" class="form-control" id="name-cnpj" placeholder="Nome">
+      </div>
+      <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <input name="cnpj" type="text" class="form-control" id="cnpj" placeholder="CNPJ apenas numeros">
+      </div>
+      <div class="form-group">
+        <label for="phone-number">Telefone</label>
+        <input name="phone-number" type="tel" class="form-control" id="phone-number" placeholder="Telefone">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="email" class="form-control" id="email-cnpj" aria-describedby="emailHelp"
+          placeholder="Email">
+        <small id="emailHelp" class="form-text text-muted">Não compartilharemos seu email com ninguém</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input name="password" type="password" class="form-control" id="password-cnpj" placeholder="Senha">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    `;
+    form.appendChild(div);
+  });
+</script>
+
+
+</html>
